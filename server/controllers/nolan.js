@@ -44,6 +44,7 @@ const destroy = (req,res) => {
     try {
         const { id } = req.params
         const nolanFilmToDelete = Nolan.findById(parseInt(id))   
+        nolanFilmToDelete.destroy()
         res.status(204).end()    
     } catch (error) {
         res.status(404).send({error: error.message})
