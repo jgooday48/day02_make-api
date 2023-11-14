@@ -13,13 +13,7 @@ app.use(cors())
 app.use('/nolan', nolanRoutes)
 
 app.get('/', (req, res) => {
-  res.send({
-    message: "welcome",
-    description: "Christopher Nolan Movies API",
-    endpoints: [
-      "GET    /"
-    ]
-  })
+  res.send('Welcome to the Christopher Nolan films API')
 })
 
 
