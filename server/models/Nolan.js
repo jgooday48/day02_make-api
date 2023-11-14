@@ -1,8 +1,6 @@
-// models/DB -> controllers -> routers -> app -> localhost:3000/villains
-
-// localhost:3000/villains -> app -> routers -> controllers -> models/DB
-
 const nolanData = require('../data')
+
+
 
 class Nolan {
   constructor(data) {
@@ -12,17 +10,17 @@ class Nolan {
   }
 
   static getAll() {
-    const nolan = nolanData.map(v => new Nolan(v))
-    return nolan
+    const nolanFilms = nolanData.map(f => new Nolan(v))
+    return nolanFilms
   }
 
   static findById(nolanId) {
     try {
-      const nolanData = nolanFilmsData.find(v => v.id === nolanId)
-      const nolan = new Nolan(nolanData)
-      return nolan
+      const nolanFilmsData = nolanData.find(f => f.id === nolanId)
+      const nolanFilm = new Nolan(nolanFilmsData)
+      return nolanFilm
     } catch (error) {
-      throw new Error('The nolan film')
+      throw new Error('The nolan film does not exist')
     }
   }
 
@@ -31,41 +29,42 @@ class Nolan {
 
     try {
       let nextId
-      nolanFilmsData.length
-        ? nextId = nolanFilmsData.reduce((v1, v2) => v1.id > v2.id ? v1 : v2).id + 1
+      nolanData.length
+        ? nextId = nolanData.reduce((f1, f2) => f1.id > f2.id ? f1 : f2).id + 1
         : nextId = 1
 
-      const newNolan = new Nolan({ id: nextId, name: data.name, year: data.year })
-      nolanFilmsData.push(newNolan)
-      return newNolan
+      const newNolanFilm = new Nolan({ id: nextId, name: data.name, year: data.year })
+      nolanData.push(newNolanFilm)
+      return newNolanFilm
     } catch (err) {
       throw new Error(err)
     }
   }
+
   update(data) {
     try {
-      const nolanData = nolanFilmsData.find(nolan => nolan.id === this.id)
+      const nolanFilmsData = nolanData.find(nolan => nolan.id === this.id)
 
-      if (!nolanData) {
-        throw new Error('nolan film not found')
+      if (!nolanFilmsData) {
+        throw new Error('Nolan film not found')
       }
 
       if (!data.name) {
-        throw new Error('film name missing')
+        throw new Error('Film name missing')
       }
 
-      nolanData.name = data.name
-      return new Nolan(nolanData)
+      nolanFilmsData.name = data.name
+      return new Nolan(nolanFilmsData)
     } catch (error) {
       throw new Error(err.message)
     }
   }
 
   destroy() {
-    const nolanData = nolanFilmsData.find(nolan => nolan.id === this.id)
-    if (nolanData) {
-        const nolanFilmsIndex = nolanData.indexOf(nolanData)
-        nolanFilmsData.splice(nolanFilmsIndex,1)
+    const nolanFilmsData = nolanData.find(nolan => nolan.id === this.id)
+    if (nolanFilmsData) {
+        const nolanFilmsIndex = nolanData.indexOf(nolanFilmsData)
+        nolanData.splice(nolanFilmsIndex,1)
     } else {
         throw new Error("Nolan film not found")
     }
