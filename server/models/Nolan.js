@@ -10,7 +10,7 @@ class Nolan {
   }
 
   static getAll() {
-    const nolanFilms = nolanData.map(f => new Nolan(v))
+    const nolanFilms = nolanData.map(f => new Nolan(f))
     return nolanFilms
   }
 
@@ -25,7 +25,7 @@ class Nolan {
   }
 
   static create(data) {
-    if (!data.name) throw new Error('name is missing')
+    if (!data.name) throw new Error('Film name is missing')
 
     try {
       let nextId

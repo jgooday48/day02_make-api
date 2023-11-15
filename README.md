@@ -1,4 +1,8 @@
 # day02_make-api
+
+## About
+- This api contains data for all of Christopher Nolan's films
+
 ## Instructions
 - Clone or fork this repo
 - cd into `server`
